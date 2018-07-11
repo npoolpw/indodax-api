@@ -37,3 +37,5 @@ Indodax.prototype.getOrderBook = function (market, callback) {
 	 */
 	this._get({market: market, target: 'depth'}, {}, callback);
 }
+
+module.exports = Indodax;
