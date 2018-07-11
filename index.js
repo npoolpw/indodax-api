@@ -23,6 +23,7 @@ var Indodax = function (key, secret, family){
 		options['timeout'] = 2000;
 		options['headers'] = {'User-Agent': self._userAgent};
 		options['family'] = family;
+		options['json'] = true;
 		
 		return cloudscraper.request(options,callback);
 	};
