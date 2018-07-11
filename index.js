@@ -29,11 +29,13 @@ var Indodax = function (key, secret, family){
 		return cloudscraper.request(options,callback);
 	};
 	
-	self._post = function (data, options, callback) {
+	self._post = function (method, data, options, callback) {
 		data = data | {};
-		data['nonce'] = new Date().getTime();
 		
 		var sign = hmac_sha512.HmacSHA512(querystring.stringify(data), self._secret);
+		
+		data['nonce'] = new Date().getTime();
+		data['method'] = method;
 		
 		options['method'] = 'POST';
 		options['url'] = 'https://indodax.com/tapi';
@@ -62,14 +64,14 @@ Indodax.prototype.getInfo = function (callback) {
 	/**
 	 * @param none
 	 */
-	this._post({method:'getInfo'}, {}, callback);
+	this._post('getInfo', {}, {}, callback);
 }
 
 Indodax.prototype.getOrders = function (pair, callback) {
 	/**
 	 * @param pair
 	 */
-	this._post({method:'openOrders', pair: pair}, {}, callback)
+	this._post('openOrders', {pair: pair}, {}, callback)
 }
 
 module.exports = Indodax;
