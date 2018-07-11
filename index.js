@@ -28,3 +28,11 @@ var Indodax = function (key, secret, family){
 	};
 	return self;
 };
+
+// Public methods
+Indodax.prototype.getOrderBook = function (market, callback) {
+	/**
+	 * @param market
+	 */
+	this._get({market: market, target: 'depth'}, {}, callback);
+}
