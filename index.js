@@ -29,12 +29,17 @@ var Indodax = function (key, secret, family){
 	};
 	
 	self._post = function (data, options, callback) {
+		data = data | {};
+		data['nonce'] = new Date().getTime();
+		
+		var sign = hmac_sha512.HmacSHA512(data.serialize(), self._secret);
+		
 		options['method'] = 'POST';
 		options['url'] = 'https://indodax.com/tapi';
 		options['form'] = data;
 		options['json'] = true;
 		options['timeout'] = 2000;
-		options['headers'] = {'User-Agent': self._userAgent};
+		options['headers'] = {'User-Agent': self._userAgent, 'Sign': sign, 'Key': self._key};
 		options['family'] = family;
 		
 		return cloudscraper.request(options, callback);
@@ -44,14 +49,26 @@ var Indodax = function (key, secret, family){
 };
 
 // Public methods
-Indodax.prototype.getOrderBook = function (market, callback) {
+Indodax.prototype.getOrderBook = function (pair, callback) {
 	/**
 	 * @param market
 	 */
-	this._get({market: market, target: 'depth'}, {}, callback);
+	this._get({pair: pair, target: 'depth'}, {}, callback);
 }
 
 //Private methods
+Indodax.prototype.getInfo = function (callback) {
+	/**
+	 * @param none
+	 */
+	this._post({method:'getInfo'}, {}, callback);
+}
 
+Indodax.prototype.getOrders = function (pair, callback) {
+	/**
+	 * @param pair
+	 */
+	this._post({method:'openOrders', pair: pair}, {}, callback)
+}
 
 module.exports = Indodax;
