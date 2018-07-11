@@ -27,6 +27,19 @@ var Indodax = function (key, secret, family){
 		
 		return cloudscraper.request(options,callback);
 	};
+	
+	self._post = function (data, options, callback) {
+		options['method'] = 'POST';
+		options['url'] = 'https://indodax.com/tapi';
+		options['form'] = data;
+		options['json'] = true;
+		options['timeout'] = 2000;
+		options['headers'] = {'User-Agent': self._userAgent};
+		options['family'] = family;
+		
+		return cloudscraper.request(options, callback);
+	};
+	
 	return self;
 };
 
@@ -37,5 +50,8 @@ Indodax.prototype.getOrderBook = function (market, callback) {
 	 */
 	this._get({market: market, target: 'depth'}, {}, callback);
 }
+
+//Private methods
+
 
 module.exports = Indodax;
