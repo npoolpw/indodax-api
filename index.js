@@ -1,5 +1,6 @@
 var cloudscraper = require('cloudscraper');
 var hmac_sha512 = require('./hmac-sha512.js');
+var querystring = require("querystring");
 var Indodax = function (key, secret, family){
 	family = family || 4;
 	var self = this;
@@ -32,7 +33,7 @@ var Indodax = function (key, secret, family){
 		data = data | {};
 		data['nonce'] = new Date().getTime();
 		
-		var sign = hmac_sha512.HmacSHA512(data.serialize(), self._secret);
+		var sign = hmac_sha512.HmacSHA512(querystring.stringify(data), self._secret);
 		
 		options['method'] = 'POST';
 		options['url'] = 'https://indodax.com/tapi';
