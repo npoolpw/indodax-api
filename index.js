@@ -32,10 +32,10 @@ var Indodax = function (key, secret, family){
 	self._post = function (method, data, options, callback) {
 		data = data || {};
 		
-		var sign = hmac_sha512.HmacSHA512(querystring.stringify(data), self._secret);
-		
 		data['nonce'] = new Date().getTime();
 		data['method'] = method;
+		
+		var sign = hmac_sha512.HmacSHA512(querystring.stringify(data), self._secret);
 		
 		options['method'] = 'POST';
 		options['url'] = 'https://indodax.com/tapi';
