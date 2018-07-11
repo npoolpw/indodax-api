@@ -1,0 +1,15 @@
+{
+  "name": "indodax-api",
+  "version": "1.0.0",
+  "description": "Api for indodax",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ahka.net",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/npoolpw/indodax-api.git"
+  }
+}
