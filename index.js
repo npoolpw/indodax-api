@@ -74,4 +74,13 @@ Indodax.prototype.getOrders = function (pair, callback) {
 	this._post('openOrders', {pair: pair}, {}, callback)
 }
 
+Indodax.prototype.cancelOrder = function (pair, order_id, type, callback) {
+	/**
+	 * @param pair
+	 * @param order_id
+	 * @param type
+	 */
+	this._post('cancelOrder', {pair: pair, order_id: order_id, type: type}, {}, callback)
+}
+
 module.exports = Indodax;
