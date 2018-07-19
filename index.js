@@ -67,17 +67,22 @@ Indodax.prototype.getInfo = function (callback) {
 	this._post('getInfo', {}, {}, callback);
 }
 
-Indodax.prototype.trade = function (pair, type, price, idr, btc, callback) {
+Indodax.prototype.trade = function (pair, type, price, currency, amount, callback) {
 	/**
 	 * @param pair
 	 * @param type
 	 * @param price
-	 * @param idr : amount of rupiah to buy btc
-	 * @param btc : amount of btc to sell
+	 * @param currency
+	 * @param amount
 	 */
 	
+	var data = {};
+	data['pair'] = pair;
+	data['type'] = type;
+	data['price'] = price;
+	data[currency] = amount;
 	
-	this._post('trade', {pair: pair, type: type, price: price, idr: idr, btc: btc}, {}, callback)
+	this._post('trade', data, {}, callback)
 }
 
 Indodax.prototype.getOrders = function (pair, callback) {
