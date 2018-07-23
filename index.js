@@ -82,14 +82,14 @@ Indodax.prototype.trade = function (pair, type, price, currency, amount, callbac
 	data['price'] = price;
 	data[currency] = amount;
 	
-	this._post('trade', data, {}, callback)
+	this._post('trade', data, {}, callback);
 }
 
 Indodax.prototype.getOrders = function (pair, callback) {
 	/**
 	 * @param pair
 	 */
-	this._post('openOrders', {pair: pair}, {}, callback)
+	this._post('openOrders', {pair: pair}, {}, callback);
 }
 
 Indodax.prototype.cancelOrder = function (pair, order_id, type, callback) {
@@ -98,7 +98,7 @@ Indodax.prototype.cancelOrder = function (pair, order_id, type, callback) {
 	 * @param order_id
 	 * @param type
 	 */
-	this._post('cancelOrder', {pair: pair, order_id: order_id, type: type}, {}, callback)
+	this._post('cancelOrder', {pair: pair, order_id: order_id, type: type}, {}, callback);
 }
 
 module.exports = Indodax;
