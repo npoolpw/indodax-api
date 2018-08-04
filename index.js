@@ -20,7 +20,7 @@ var Indodax = function (key, secret, family){
 		}
 		
 		options['method'] = 'GET';
-		options['url'] = 'https://indodax.com/api' + qs;
+		options['url'] = options['url'] || 'https://indodax.com/api' + qs;
 		options['timeout'] = 2000;
 		options['headers'] = {'User-Agent': self._userAgent};
 		options['family'] = family;
@@ -38,7 +38,7 @@ var Indodax = function (key, secret, family){
 		var sign = hmac_sha512.HmacSHA512(querystring.stringify(data), self._secret);
 		
 		options['method'] = 'POST';
-		options['url'] = 'https://indodax.com/tapi';
+		options['url'] = options['url'] || 'https://indodax.com/tapi';
 		options['form'] = data;
 		options['json'] = true;
 		options['timeout'] = 2000;
