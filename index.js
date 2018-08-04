@@ -59,6 +59,13 @@ Indodax.prototype.getOrderBook = function (pair, callback) {
 	this._get({pair: pair, target: 'depth'}, {}, callback);
 }
 
+Indodax.prototype.ticker = function (pair, callback) {
+	/**
+	 * @param market
+	 */
+	this._get({pair: pair, target: 'ticker'}, {}, callback);
+}
+
 Indodax.prototype.getTradeHistory  = function (pair, callback) {
 	/**
 	 * @param market
