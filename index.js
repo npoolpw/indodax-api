@@ -21,7 +21,7 @@ var Indodax = function (key, secret, family){
 		
 		options['method'] = 'GET';
 		options['url'] = options['url'] || 'https://indodax.com/api' + qs;
-		options['timeout'] = 2000;
+		options['timeout'] = 5000;
 		options['headers'] = {'User-Agent': self._userAgent};
 		options['family'] = family;
 		options['json'] = true;
